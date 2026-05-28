@@ -25,6 +25,7 @@ export async function getArticles(params?: {
       fields: params?.fields ?? ARTICLE_FIELDS,
       filters: params?.filters,
       orders: "-published_at",
+      depth: 2,
     },
   });
 }
@@ -35,6 +36,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     queries: {
       filters: `slug[equals]${slug}`,
       limit: 1,
+      depth: 2,
     },
   });
   return res.contents[0] ?? null;
@@ -48,6 +50,7 @@ export async function getFeaturedArticles(limit = 3): Promise<Article[]> {
       limit,
       fields: ARTICLE_FIELDS,
       orders: "-published_at",
+      depth: 2,
     },
   });
   return res.contents;
@@ -65,6 +68,7 @@ export async function getArticlesByCategory(
       offset: params?.offset ?? 0,
       fields: ARTICLE_FIELDS,
       orders: "-published_at",
+      depth: 2,
     },
   });
 }
@@ -81,6 +85,7 @@ export async function getArticlesByTag(
       offset: params?.offset ?? 0,
       fields: ARTICLE_FIELDS,
       orders: "-published_at",
+      depth: 2,
     },
   });
 }
