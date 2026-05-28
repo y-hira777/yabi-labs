@@ -16,7 +16,7 @@ n8n / OpenAI / Claude API を使った記事自動投稿の設計メモです。
   → microCMS API で下書き投稿（status: draft）
   → Yabi が管理画面で確認・編集
   → 「公開」ボタンを押す
-  → microCMS Webhook → Vercel 再ビルド
+  → microCMS Webhook → Netlify 再ビルド
   → https://yabi-labs.jp に反映
 
 【X 投稿自動生成フロー】
@@ -116,8 +116,8 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 # microCMS 書き込み用 API キー（読み取りとは分ける）
 MICROCMS_WRITE_API_KEY=your-write-api-key
 
-# Vercel Deploy Hook（n8n からの手動再ビルドトリガー用）
-VERCEL_DEPLOY_HOOK_URL=https://api.vercel.com/v1/integrations/deploy/xxx/yyy
+# Netlify Build Hook（n8n からの手動再ビルドトリガー用）
+NETLIFY_BUILD_HOOK_URL=https://api.netlify.com/build_hooks/xxx
 
 # SNS（将来的に追加）
 X_API_KEY=your-x-api-key
@@ -126,7 +126,7 @@ X_ACCESS_TOKEN=your-x-access-token
 X_ACCESS_TOKEN_SECRET=your-x-access-token-secret
 ```
 
-> これらは Vercel の環境変数にも設定し、コードには書かないこと。  
+> これらは Netlify の環境変数にも設定し、コードには書かないこと。  
 > n8n がセルフホストの場合は n8n 側の Credentials に設定する。
 
 ---
@@ -190,7 +190,7 @@ export async function getCategories() { ... }
 ## 今後の実装優先順位（参考）
 
 1. microCMS 実接続とコンテンツ投入
-2. Vercel Webhook 動作確認
+2. Netlify Build Hook 動作確認
 3. n8n セットアップ（ローカル Docker または n8n Cloud）
 4. AI 記事下書き生成ワークフロー
 5. X 投稿文生成ワークフロー

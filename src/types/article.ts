@@ -13,7 +13,7 @@ export type Article = {
   eyecatch?: MicroCMSImage;
   category?: Category;
   tags?: Tag[];
-  publishedAt?: string;
+  published_at?: string;
   seoTitle?: string;
   seoDescription?: string;
   ogImage?: MicroCMSImage;

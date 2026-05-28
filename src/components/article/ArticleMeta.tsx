@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function ArticleMeta({ article, showTags = false }: Props) {
-  const date = article.publishedAt ?? article.createdAt;
+  const date = article.published_at ?? article.createdAt;
 
   return (
     <div className="flex flex-wrap items-center gap-2">

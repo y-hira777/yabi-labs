@@ -5,7 +5,7 @@ import type { Tag } from "@/types/tag";
 import type { MicroCMSListResponse } from "@/types/microcms";
 
 const ARTICLE_FIELDS =
-  "id,title,slug,excerpt,eyecatch,category,tags,publishedAt,updatedAt,isFeatured,status";
+  "id,title,slug,excerpt,eyecatch,category,tags,published_at,updatedAt,isFeatured,status";
 
 // -------------------------------------------------------
 // Articles
@@ -24,7 +24,7 @@ export async function getArticles(params?: {
       offset: params?.offset ?? 0,
       fields: params?.fields ?? ARTICLE_FIELDS,
       filters: params?.filters,
-      orders: "-publishedAt",
+      orders: "-published_at",
     },
   });
 }
@@ -47,7 +47,7 @@ export async function getFeaturedArticles(limit = 3): Promise<Article[]> {
       filters: "isFeatured[equals]true",
       limit,
       fields: ARTICLE_FIELDS,
-      orders: "-publishedAt",
+      orders: "-published_at",
     },
   });
   return res.contents;
@@ -64,7 +64,7 @@ export async function getArticlesByCategory(
       limit: params?.limit ?? 12,
       offset: params?.offset ?? 0,
       fields: ARTICLE_FIELDS,
-      orders: "-publishedAt",
+      orders: "-published_at",
     },
   });
 }
@@ -80,7 +80,7 @@ export async function getArticlesByTag(
       limit: params?.limit ?? 12,
       offset: params?.offset ?? 0,
       fields: ARTICLE_FIELDS,
-      orders: "-publishedAt",
+      orders: "-published_at",
     },
   });
 }
