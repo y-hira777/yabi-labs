@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: `Not Found | ${SITE_NAME}` };
   }
 
-  const title = article.seoTitle ?? article.title;
-  const description = article.seoDescription ?? article.excerpt ?? "";
-  const ogImage = article.ogImage ?? article.eyecatch;
+  const title = article.title;
+  const description = "";
+  const ogImage = article.thumbnail;
 
   return {
     title,
@@ -77,11 +77,11 @@ export default async function ArticleDetailPage({ params }: Props) {
         {article.title}
       </h1>
 
-      {/* Eyecatch */}
-      {article.eyecatch && (
+      {/* Thumbnail */}
+      {article.thumbnail && (
         <div className="mb-10 overflow-hidden rounded-sm border border-[var(--color-border)]">
           <Eyecatch
-            image={article.eyecatch}
+            image={article.thumbnail}
             alt={article.title}
             className="w-full h-auto"
             priority
@@ -89,9 +89,9 @@ export default async function ArticleDetailPage({ params }: Props) {
         </div>
       )}
 
-      {/* Body */}
-      {article.body ? (
-        <ArticleBody html={article.body} />
+      {/* Content */}
+      {article.content ? (
+        <ArticleBody html={article.content} />
       ) : (
         <p className="text-sm text-[var(--color-text-muted)]">本文がありません。</p>
       )}

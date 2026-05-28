@@ -16,10 +16,12 @@ export function ArticleMeta({ article, showTags = false }: Props) {
       <time dateTime={date} className="font-mono text-[10px] text-[var(--color-text-muted)]">
         {formatDate(date)}
       </time>
-      {article.category && (
+      {article.categories && article.categories.length > 0 && (
         <>
           <span className="text-[var(--color-border-subtle)] text-[10px]">/</span>
-          <CategoryBadge category={article.category} />
+          {article.categories.map((cat) => (
+            <CategoryBadge key={cat.id} category={cat} />
+          ))}
         </>
       )}
       {showTags && article.tags && article.tags.length > 0 && (

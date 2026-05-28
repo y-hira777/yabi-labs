@@ -8,15 +8,9 @@ export type Article = {
   id: string;
   title: string;
   slug: string;
-  excerpt?: string;
-  body?: string;
-  eyecatch?: MicroCMSImage;
-  category?: Category;
+  content?: string;
+  thumbnail?: MicroCMSImage;
+  categories?: Category[];
   tags?: Tag[];
   published_at?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  ogImage?: MicroCMSImage;
-  isFeatured?: boolean;
-  status?: ArticleStatus;
 } & MicroCMSDate;

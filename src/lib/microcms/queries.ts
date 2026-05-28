@@ -5,7 +5,7 @@ import type { Tag } from "@/types/tag";
 import type { MicroCMSListResponse } from "@/types/microcms";
 
 const ARTICLE_FIELDS =
-  "id,title,slug,excerpt,eyecatch,category,tags,published_at,updatedAt,isFeatured,status";
+  "id,title,slug,thumbnail,content,categories,tags,published_at";
 
 // -------------------------------------------------------
 // Articles
@@ -60,7 +60,7 @@ export async function getArticlesByCategory(
   return client.getList<Article>({
     endpoint: "articles",
     queries: {
-      filters: `category[equals]${categoryId}`,
+      filters: `categories[contains]${categoryId}`,
       limit: params?.limit ?? 12,
       offset: params?.offset ?? 0,
       fields: ARTICLE_FIELDS,

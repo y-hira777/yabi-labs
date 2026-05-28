@@ -22,7 +22,7 @@ export function ArticleCard({ article, featured = false }: Props) {
           ].join(" ")}
         >
           <Eyecatch
-            image={article.eyecatch}
+            image={article.thumbnail}
             alt={article.title}
             className={[
               "h-full w-full transition-transform duration-300 group-hover:scale-[1.02]",
@@ -41,11 +41,6 @@ export function ArticleCard({ article, featured = false }: Props) {
           >
             {article.title}
           </h2>
-          {article.excerpt && (
-            <p className="text-xs text-[var(--color-text-muted)] leading-relaxed line-clamp-2">
-              {truncate(article.excerpt, 80)}
-            </p>
-          )}
         </div>
       </Link>
     </article>

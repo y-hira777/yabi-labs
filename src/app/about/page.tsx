@@ -15,6 +15,7 @@ const categories = [
   { name: "WordPress", description: "カスタマイズ・Gutenberg・テーマ開発" },
   { name: "Tools", description: "便利なツール・サービスのレビューと使い方" },
   { name: "Experiments", description: "試してみた・壊してみた・面白かったこと" },
+  { name: "Devlog", description: "開発記録・進捗" },
 ];
 
 export default function AboutPage() {
