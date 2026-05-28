@@ -55,6 +55,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background-color: var(--color-accent-violet);
+  color: var(--color-base-950);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-base-500);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-base-400);
+}
+
 /* ========================================
    Article Body (microCMS リッチエディタ出力)
    ======================================== */
