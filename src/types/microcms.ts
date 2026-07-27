@@ -7,7 +7,7 @@ export type MicroCMSImage = {
 export type MicroCMSDate = {
   createdAt: string;
   updatedAt: string;
-  published_at: string;
+  publishedAt: string;
   revisedAt: string;
 };
 

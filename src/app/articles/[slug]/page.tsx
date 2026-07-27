@@ -5,6 +5,7 @@ import { ArticleBody } from "@/components/article/ArticleBody";
 import { CategoryBadge } from "@/components/category/CategoryBadge";
 import { TagBadge } from "@/components/tag/TagBadge";
 import { Eyecatch } from "@/components/ui/Eyecatch";
+import { getCategoryThumbnail } from "@/lib/content/categoryThumbnails";
 import { getArticleBySlug, getAllArticleSlugs } from "@/lib/microcms/queries";
 import { SITE_NAME, SITE_URL, formatDate } from "@/lib/utils";
 
@@ -33,18 +34,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = article.title;
   const ogImage = article.thumbnail;
+  const categoryThumbnail = getCategoryThumbnail(article.categories?.[0]?.slug);
+  const ogImageUrl = ogImage?.url ?? (categoryThumbnail ? `${SITE_URL}${categoryThumbnail}` : null);
 
   return {
     title,
     openGraph: {
       title,
       url: `${SITE_URL}/articles/${slug}`,
-      images: ogImage ? [{ url: ogImage.url, width: ogImage.width, height: ogImage.height }] : [],
+      images: ogImageUrl
+        ? [
+            {
+              url: ogImageUrl,
+              width: ogImage?.width ?? 1600,
+              height: ogImage?.height ?? 1000,
+            },
+          ]
+        : [],
     },
     twitter: {
       card: "summary_large_image",
       title,
-      images: ogImage ? [ogImage.url] : [],
+      images: ogImageUrl ? [ogImageUrl] : [],
     },
   };
 }
@@ -63,7 +74,8 @@ export default async function ArticleDetailPage({ params }: Props) {
     notFound();
   }
 
-  const date = article.published_at ?? article.createdAt;
+  const date = article.published_at ?? article.publishedAt ?? article.createdAt;
+  const categoryThumbnail = getCategoryThumbnail(article.categories?.[0]?.slug);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
@@ -109,16 +121,15 @@ export default async function ArticleDetailPage({ params }: Props) {
       </div>
 
       {/* Thumbnail */}
-      {article.thumbnail && (
-        <div className="mb-14 overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-base-100)] shadow-[6px_6px_0_var(--color-accent-violet)]">
-          <Eyecatch
-            image={article.thumbnail}
-            alt={article.title}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
-      )}
+      <div className="mb-14 overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-base-100)] shadow-[6px_6px_0_var(--color-accent-violet)]">
+        <Eyecatch
+          image={article.thumbnail}
+          fallbackSrc={categoryThumbnail}
+          alt={article.title}
+          className="aspect-[16/10] h-auto w-full"
+          priority
+        />
+      </div>
 
       {/* Content */}
       {article.content ? (

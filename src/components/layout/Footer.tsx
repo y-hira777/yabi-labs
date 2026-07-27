@@ -23,6 +23,7 @@ export function Footer() {
                 { href: "/tags", label: "Tags" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/policy", label: "Policy" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
