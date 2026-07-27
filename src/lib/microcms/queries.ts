@@ -5,7 +5,7 @@ import type { Tag } from "@/types/tag";
 import type { MicroCMSListResponse } from "@/types/microcms";
 
 const ARTICLE_FIELDS =
-  "id,title,slug,thumbnail,content,categories,tags,published_at";
+  "id,title,slug,thumbnail,content,categories,tags,published_at,publishedAt,createdAt";
 
 // -------------------------------------------------------
 // Articles
@@ -126,11 +126,34 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
 // -------------------------------------------------------
 
 export async function getTags(): Promise<Tag[]> {
-  const res = await client.getList<Tag>({
-    endpoint: "tags",
-    queries: { limit: 200 },
-  });
-  return res.contents;
+  const [tagsResult, articleTagsResult] = await Promise.allSettled([
+    client.getList<Tag>({
+      endpoint: "tags",
+      queries: { limit: 200 },
+    }),
+    client.getList<Pick<Article, "tags">>({
+      endpoint: "articles",
+      queries: { fields: "tags", limit: 100, depth: 2 },
+    }),
+  ]);
+
+  if (tagsResult.status === "rejected" && articleTagsResult.status === "rejected") {
+    throw tagsResult.reason;
+  }
+
+  const tagsById = new Map<string, Tag>();
+
+  if (tagsResult.status === "fulfilled") {
+    tagsResult.value.contents.forEach((tag) => tagsById.set(tag.id, tag));
+  }
+
+  if (articleTagsResult.status === "fulfilled") {
+    articleTagsResult.value.contents.forEach((article) => {
+      article.tags?.forEach((tag) => tagsById.set(tag.id, tag));
+    });
+  }
+
+  return Array.from(tagsById.values()).sort((a, b) => a.name.localeCompare(b.name, "ja"));
 }
 
 export async function getTagBySlug(slug: string): Promise<Tag | null> {

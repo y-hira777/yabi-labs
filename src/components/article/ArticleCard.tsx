@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Eyecatch } from "@/components/ui/Eyecatch";
+import { getCategoryThumbnail } from "@/lib/content/categoryThumbnails";
 import { ArticleMeta } from "./ArticleMeta";
 import type { Article } from "@/types/article";
 
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function ArticleCard({ article, featured = false, index }: Props) {
+  const categoryThumbnail = getCategoryThumbnail(article.categories?.[0]?.slug);
+
   if (featured) {
     return (
       <article className="group">
@@ -20,6 +23,7 @@ export function ArticleCard({ article, featured = false, index }: Props) {
           <div className="overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-base-100)] shadow-[6px_6px_0_var(--color-border)]">
             <Eyecatch
               image={article.thumbnail}
+              fallbackSrc={categoryThumbnail}
               alt={article.title}
               className="aspect-[16/10] h-full w-full transition-transform duration-500 group-hover:scale-[1.03]"
               priority
@@ -55,6 +59,7 @@ export function ArticleCard({ article, featured = false, index }: Props) {
           )}
           <Eyecatch
             image={article.thumbnail}
+            fallbackSrc={categoryThumbnail}
             alt={article.title}
             className="aspect-[4/3] h-full w-full grayscale-[15%] transition-all duration-500 group-hover:scale-[1.04] group-hover:grayscale-0"
           />
