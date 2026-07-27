@@ -12,11 +12,11 @@ export function Eyecatch({ image, alt, className = "", priority = false }: Props
   if (!image) {
     return (
       <div
-        className={`flex items-center justify-center bg-gradient-to-br from-[var(--color-surface)] via-[var(--color-base-700)] to-[var(--color-base-800)] ${className}`}
+        className={`flex items-center justify-center bg-[var(--color-base-100)] ${className}`}
         aria-hidden="true"
       >
         <svg
-          className="w-10 h-10 text-[var(--color-base-500)]"
+          className="h-10 w-10 text-[var(--color-base-500)]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

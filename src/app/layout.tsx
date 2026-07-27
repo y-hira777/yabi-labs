@@ -51,7 +51,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${jetBrainsMono.variable} ${notoSansJP.variable}`}>
+    <html
+      lang="ja"
+      className={`${jetBrainsMono.variable} ${notoSansJP.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text-primary)] antialiased">
         <Header />
         <main className="flex-1">{children}</main>
