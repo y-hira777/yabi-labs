@@ -24,28 +24,29 @@ export default async function CategoriesPage() {
   return (
     <div>
       <PageHeader prompt="~/categories" title="Categories" description="トピック別に記事を探す" />
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         {categories.length === 0 ? (
           <EmptyState message="カテゴリはまだありません" />
         ) : (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category) => (
+          <div className="grid grid-cols-1 border-l-2 border-t-2 border-[var(--color-border)] sm:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/categories/${category.slug}`}
-                className="group block rounded-sm border border-[var(--color-border)] p-5 transition-colors hover:border-[var(--color-accent-violet)]"
+                className="group relative min-h-56 border-b-2 border-r-2 border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-colors hover:bg-[var(--color-accent-lime)]"
               >
-                <p className="font-mono text-xs text-[var(--color-accent-violet)] mb-2">
-                  {category.slug}
+                <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                  Field / {String(index + 1).padStart(2, "0")}
                 </p>
-                <h2 className="font-sans text-base font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-cyan)] transition-colors">
-                  {category.name}
-                </h2>
+                <h2 className="mt-10 text-2xl font-black tracking-[-0.04em]">{category.name}</h2>
                 {category.description && (
-                  <p className="mt-2 text-xs text-[var(--color-text-muted)] leading-relaxed">
+                  <p className="mt-3 max-w-xs text-xs font-medium leading-relaxed text-[var(--color-text-secondary)]">
                     {category.description}
                   </p>
                 )}
+                <span className="absolute bottom-5 right-5 font-mono text-lg transition-transform group-hover:-rotate-12">
+                  ↗
+                </span>
               </Link>
             ))}
           </div>

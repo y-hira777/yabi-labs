@@ -7,21 +7,23 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-4 py-32 text-center">
-      <p className="font-mono text-xs text-[var(--color-accent-cyan)] tracking-widest mb-4">
-        {"// 404"}
+    <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 py-32 text-center">
+      <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-accent-cyan)]">
+        Archive error / 404
       </p>
-      <h1 className="font-mono text-4xl font-bold text-[var(--color-text-primary)] mb-3">
-        Page Not Found
+      <h1 className="text-6xl font-black leading-none tracking-[-0.08em] sm:text-8xl">
+        NOT
+        <br />
+        FOUND<span className="text-[var(--color-accent-violet)]">.</span>
       </h1>
-      <p className="text-sm text-[var(--color-text-muted)] mb-8 max-w-sm leading-relaxed">
+      <p className="mb-8 mt-6 max-w-sm text-sm font-medium leading-relaxed text-[var(--color-text-secondary)]">
         お探しのページは見つかりませんでした。
         <br />
         移動または削除された可能性があります。
       </p>
       <Link
         href="/"
-        className="inline-block rounded-sm border border-[var(--color-accent-cyan)] px-5 py-2 font-mono text-sm text-[var(--color-accent-cyan)] transition-colors hover:bg-[var(--color-accent-cyan)] hover:text-[var(--color-base-950)]"
+        className="inline-block border-2 border-[var(--color-border)] bg-[var(--color-accent-lime)] px-5 py-3 font-mono text-[10px] font-black uppercase tracking-wider shadow-[4px_4px_0_var(--color-border)] transition-transform hover:-translate-y-1"
       >
         ← トップへ戻る
       </Link>

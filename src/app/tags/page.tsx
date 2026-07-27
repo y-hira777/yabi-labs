@@ -24,11 +24,11 @@ export default async function TagsPage() {
   return (
     <div>
       <PageHeader prompt="~/tags" title="Tags" description="タグから記事を探す" />
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         {tags.length === 0 ? (
           <EmptyState message="タグはまだありません" />
         ) : (
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 border-y-2 border-[var(--color-border)] py-8">
             {tags.map((tag) => (
               <TagBadge key={tag.id} tag={tag} size="md" />
             ))}
