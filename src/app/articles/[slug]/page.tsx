@@ -35,27 +35,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = article.title;
   const ogImage = article.thumbnail;
   const categoryThumbnail = getCategoryThumbnail(article.categories?.[0]?.slug);
-  const ogImageUrl = ogImage?.url ?? (categoryThumbnail ? `${SITE_URL}${categoryThumbnail}` : null);
+  const ogImageUrl =
+    ogImage?.url ??
+    (categoryThumbnail ? `${SITE_URL}${categoryThumbnail}` : `${SITE_URL}/images/common/ogp.png`);
+  const ogImageWidth = ogImage?.width ?? (categoryThumbnail ? 1200 : 1536);
+  const ogImageHeight = ogImage?.height ?? (categoryThumbnail ? 800 : 1024);
 
   return {
     title,
     openGraph: {
       title,
       url: `${SITE_URL}/articles/${slug}`,
-      images: ogImageUrl
-        ? [
-            {
-              url: ogImageUrl,
-              width: ogImage?.width ?? 1600,
-              height: ogImage?.height ?? 1000,
-            },
-          ]
-        : [],
+      images: [
+        {
+          url: ogImageUrl,
+          width: ogImageWidth,
+          height: ogImageHeight,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
-      images: ogImageUrl ? [ogImageUrl] : [],
+      images: [ogImageUrl],
     },
   };
 }
