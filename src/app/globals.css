@@ -171,6 +171,10 @@ button:focus-visible {
   font-weight: 600;
 }
 
+.article-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
 .article-body code {
   background-color: var(--color-base-100);
   color: var(--color-accent-violet-dim);
