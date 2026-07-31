@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>デモ | Yabi Labs</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --ng: #dc2626;
+    --ok: #16a34a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111111;
+      --fg: #f3f4f6;
+      --muted: #9ca3af;
+      --line: #2a2a2a;
+      --ng: #f87171;
+      --ok: #4ade80;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 20px;
+  }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  .note { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+  .cases { display: grid; gap: 20px; }
+  @media (min-width: 700px) { .cases { grid-template-columns: 1fr 1fr; } }
+  .case { border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+  .case h2 { font-size: 14px; margin: 0 0 10px; }
+  .case.ng h2 { color: var(--ng); }
+  .case.ok h2 { color: var(--ok); }
+</style>
+</head>
+<body>
+
+<h1>デモのタイトル</h1>
+<p class="note">何を確認するデモか、1行で書く。</p>
+
+<div class="cases">
+  <section class="case ng">
+    <h2>❌ 壊れている例</h2>
+    <!-- 再現マークアップ -->
+  </section>
+
+  <section class="case ok">
+    <h2>✅ 直した例</h2>
+    <!-- 修正版マークアップ -->
+  </section>
+</div>
+
+<script>
+  // 必要なら
+</script>
+
+</body>
+</html>
