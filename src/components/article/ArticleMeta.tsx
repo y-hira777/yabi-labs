@@ -9,22 +9,25 @@ type Props = {
 };
 
 export function ArticleMeta({ article, showTags = false }: Props) {
-  const date = article.publishedAt ?? article.createdAt;
+  const date = article.published_at ?? article.publishedAt ?? article.createdAt;
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <time dateTime={date} className="font-mono text-[10px] text-[var(--color-text-muted)]">
-        {formatDate(date)}
-      </time>
-      {article.category && (
+    <div className="flex flex-wrap items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-wider">
+      {date && (
+        <time dateTime={date} className="tabular-nums text-[var(--color-text-muted)]">
+          {formatDate(date)}
+        </time>
+      )}
+      {article.categories && article.categories.length > 0 && (
         <>
-          <span className="text-[var(--color-border-subtle)] text-[10px]">/</span>
-          <CategoryBadge category={article.category} />
+          {article.categories.map((cat) => (
+            <CategoryBadge key={cat.id} category={cat} />
+          ))}
         </>
       )}
       {showTags && article.tags && article.tags.length > 0 && (
         <>
-          <span className="text-[var(--color-border-subtle)] text-[10px]">/</span>
+          <span className="select-none text-[var(--color-base-400)]">/</span>
           {article.tags.map((tag) => (
             <TagBadge key={tag.id} tag={tag} />
           ))}

@@ -31,13 +31,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/images/common/ogp.png",
+        width: 1536,
+        height: 1024,
+        alt: SITE_NAME,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: ["/images/og-default.png"],
+    images: ["/images/common/ogp.png"],
   },
   robots: {
     index: true,
@@ -51,7 +58,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${jetBrainsMono.variable} ${notoSansJP.variable}`}>
+    <html
+      lang="ja"
+      className={`${jetBrainsMono.variable} ${notoSansJP.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text-primary)] antialiased">
         <Header />
         <main className="flex-1">{children}</main>

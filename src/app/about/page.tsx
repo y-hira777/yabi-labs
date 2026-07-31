@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { SITE_NAME } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -15,100 +16,99 @@ const categories = [
   { name: "WordPress", description: "カスタマイズ・Gutenberg・テーマ開発" },
   { name: "Tools", description: "便利なツール・サービスのレビューと使い方" },
   { name: "Experiments", description: "試してみた・壊してみた・面白かったこと" },
+  { name: "Devlog", description: "開発記録・進捗" },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 py-16 sm:py-20">
-      {/* Header */}
-      <div className="mb-12">
-        <p className="mb-3 font-mono text-xs text-[var(--color-accent-cyan)]">~/about</p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-[var(--color-text-primary)] sm:text-3xl">
-          About
-        </h1>
-      </div>
+    <div>
+      <PageHeader
+        prompt="~/about"
+        title="About"
+        description="完成した答えではなく、試行錯誤の途中を記録する個人研究誌。"
+      />
 
-      {/* Site */}
-      <section className="mb-12">
-        <p className="mb-2 font-mono text-xs text-[var(--color-text-muted)]">{"// site"}</p>
-        <h2 className="mb-4 font-mono text-lg font-semibold text-[var(--color-text-primary)]">
-          Yabi Labs とは
-        </h2>
-        <div className="space-y-3 text-sm text-[var(--color-text-secondary)] leading-relaxed">
-          <p>
-            Yabi Labs は、個人ブランド{" "}
-            <strong className="text-[var(--color-text-primary)]">Yabi</strong>{" "}
-            の技術・研究・実験サイトです。
-          </p>
-          <p>
-            AI・Web制作・デザイン・フロントエンド・自動化の領域で実際に試したこと、学んだこと、壊したことを記録・発信しています。
-          </p>
-          <p>
-            &ldquo;Labs&rdquo;
-            という名前のとおり、完成品ではなく実験の場です。正解を教えるサイトではなく、一緒に試行錯誤するサイトを目指しています。
-          </p>
-        </div>
-      </section>
-
-      {/* Sister site */}
-      <section className="mb-12 p-5 border border-[var(--color-border)] rounded-sm">
-        <p className="mb-2 font-mono text-xs text-[var(--color-text-muted)]">{"// sister site"}</p>
-        <div className="flex items-start justify-between gap-4">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <section className="grid gap-8 border-b-2 border-[var(--color-border)] pb-16 lg:grid-cols-[280px_1fr]">
           <div>
-            <h3 className="font-mono text-sm font-semibold text-[var(--color-text-primary)] mb-1">
-              Yabi &amp; Memories
-            </h3>
-            <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
-              旅・写真・Vlog・ペット・日常・記憶を扱うサイト。
-              <br />
-              Yabi Labs と同じ「Yabi」ブランドの、もうひとつの世界観。
+            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-accent-cyan)]">
+              01 / The lab
+            </p>
+          </div>
+          <div>
+            <h2 className="max-w-3xl text-3xl font-black leading-tight tracking-[-0.05em] sm:text-5xl">
+              つくったものだけでなく、
+              <span className="text-[var(--color-accent-violet)]">そこに至る思考</span>も残す。
+            </h2>
+            <div className="mt-8 max-w-2xl space-y-5 text-sm font-medium leading-8 text-[var(--color-text-secondary)]">
+              <p>
+                Yabi Labs は、個人ブランド{" "}
+                <strong className="text-[var(--color-text-primary)]">Yabi</strong>{" "}
+                の技術・研究・実験サイトです。
+              </p>
+              <p>
+                AI・Web制作・デザイン・フロントエンド・自動化の領域で、実際に試したこと、学んだこと、壊したことを記録・発信しています。
+              </p>
+              <p>
+                正解を教える場所ではなく、完成前のアイデアや失敗も含めて、一緒に試行錯誤できる場所を目指しています。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-8 border-b-2 border-[var(--color-border)] py-16 lg:grid-cols-[280px_1fr]">
+          <div>
+            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-accent-cyan)]">
+              02 / Research fields
+            </p>
+          </div>
+          <div className="border-l-2 border-t-2 border-[var(--color-border)] sm:grid sm:grid-cols-2">
+            {categories.map((category, index) => (
+              <div
+                key={category.name}
+                className="min-h-32 border-b-2 border-r-2 border-[var(--color-border)] bg-[var(--color-surface)] p-5"
+              >
+                <p className="font-mono text-[9px] text-[var(--color-text-muted)]">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-4 text-lg font-black tracking-[-0.03em]">{category.name}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-secondary)]">
+                  {category.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-8 py-16 lg:grid-cols-[280px_1fr]">
+          <div>
+            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-accent-cyan)]">
+              03 / Another world
             </p>
           </div>
           <Link
             href="https://yabi-memories.jp/"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 font-mono text-xs text-[var(--color-accent-cyan)] hover:underline"
+            className="group flex flex-col justify-between gap-10 border-2 border-[var(--color-border)] bg-[var(--color-accent-lime)] p-6 shadow-[6px_6px_0_var(--color-border)] transition-transform hover:-translate-y-1 sm:flex-row sm:items-end sm:p-8"
           >
-            yabi-memories.jp →
-          </Link>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="mb-12">
-        <p className="mb-2 font-mono text-xs text-[var(--color-text-muted)]">{"// categories"}</p>
-        <h2 className="mb-4 font-mono text-lg font-semibold text-[var(--color-text-primary)]">
-          扱うトピック
-        </h2>
-        <div className="divide-y divide-[var(--color-border)]">
-          {categories.map((cat) => (
-            <div key={cat.name} className="flex items-start gap-4 py-3">
-              <span className="shrink-0 font-mono text-xs text-[var(--color-accent-violet)] w-24">
-                {cat.name}
-              </span>
-              <span className="text-xs text-[var(--color-text-muted)]">{cat.description}</span>
+            <div>
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em]">
+                Sister journal
+              </p>
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] sm:text-5xl">
+                Yabi &amp; Memories
+              </h2>
+              <p className="mt-4 max-w-lg text-sm font-medium leading-7">
+                旅・写真・Vlog・ペット・日常・記憶を扱う、Yabiブランドのもうひとつの世界。
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section>
-        <p className="mb-2 font-mono text-xs text-[var(--color-text-muted)]">{"// contact"}</p>
-        <h2 className="mb-3 font-mono text-lg font-semibold text-[var(--color-text-primary)]">
-          お問い合わせ
-        </h2>
-        <p className="mb-4 text-sm text-[var(--color-text-secondary)] leading-relaxed">
-          ご質問・ご依頼・コラボのご相談などはお気軽にどうぞ。
-        </p>
-        <Link
-          href="/contact"
-          className="inline-block rounded-sm border border-[var(--color-accent-cyan)] px-5 py-2 font-mono text-sm text-[var(--color-accent-cyan)] transition-colors hover:bg-[var(--color-accent-cyan)] hover:text-[var(--color-base-950)]"
-        >
-          Contact →
-        </Link>
-      </section>
+            <span className="font-mono text-3xl transition-transform group-hover:-rotate-12">
+              ↗
+            </span>
+          </Link>
+        </section>
+      </div>
     </div>
   );
 }

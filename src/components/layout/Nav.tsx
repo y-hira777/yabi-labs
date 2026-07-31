@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/articles", label: "Articles" },
-  { href: "/categories", label: "Categories" },
-  { href: "/about", label: "About" },
+  { href: "/articles", label: "Journal", number: "01" },
+  { href: "/categories", label: "Index", number: "02" },
+  { href: "/about", label: "About", number: "03" },
 ];
 
 export function Nav() {
@@ -14,7 +14,7 @@ export function Nav() {
 
   return (
     <nav>
-      <ul className="flex items-center gap-6">
+      <ul className="flex items-center gap-2 sm:gap-7">
         {links.map((link) => {
           const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
           return (
@@ -22,13 +22,16 @@ export function Nav() {
               <Link
                 href={link.href}
                 className={[
-                  "text-sm font-mono tracking-wide transition-colors duration-150",
+                  "group/link flex items-baseline gap-1.5 border-b-2 py-1 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors duration-150 sm:text-xs",
                   isActive
-                    ? "text-[var(--color-accent-cyan)]"
-                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
+                    ? "border-[var(--color-accent-cyan)] text-[var(--color-text-primary)]"
+                    : "border-transparent text-[var(--color-text-secondary)] hover:border-[var(--color-border)] hover:text-[var(--color-text-primary)]",
                 ].join(" ")}
               >
-                {link.label}
+                <span className="hidden text-[8px] text-[var(--color-accent-cyan)] sm:inline">
+                  {link.number}
+                </span>
+                <span>{link.label}</span>
               </Link>
             </li>
           );

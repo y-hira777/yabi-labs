@@ -59,7 +59,7 @@ export default async function TagDetailPage({ params }: Props) {
         title={`#${tag.name}`}
         description={`${tag.name} タグの記事`}
       />
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <ArticleGrid articles={articles} emptyMessage="このタグの記事はまだありません" />
       </div>
     </div>

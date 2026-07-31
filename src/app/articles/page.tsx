@@ -27,7 +27,7 @@ export default async function ArticlesPage() {
         title="Articles"
         description="AI・Web制作・デザイン・自動化に関する実験と知見"
       />
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <ArticleGrid articles={articles} emptyMessage="記事は近日公開予定です" />
       </div>
     </div>
